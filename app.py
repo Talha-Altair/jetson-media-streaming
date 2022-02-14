@@ -6,6 +6,9 @@ app = Flask(__name__)
 
 IMAGES_DIR = "static/images"
 
+ALLOWED_EXTENSIONS = ['png', 'jpg', 'jpeg', 'gif']
+
+PORT = 6969
 
 @app.route('/ping')
 def ping():
@@ -37,9 +40,11 @@ def list_images():
 
     images = os.listdir(IMAGES_DIR)
 
+    images = [image for image in images if image.split('.')[-1] in ALLOWED_EXTENSIONS]
+
     return images
 
 
 if __name__ == '__main__':
 
-    app.run(debug=True, host='0.0.0.0', port=6969)
+    app.run(debug=True, host='0.0.0.0', port=PORT)
