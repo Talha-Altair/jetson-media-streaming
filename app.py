@@ -13,7 +13,7 @@ PORT = 6969
 @app.route('/ping')
 def ping():
 
-    return jsonify({"ping": "pong"})
+    return jsonify({"Talha": "Altair"})
 
 
 @app.route('/')
