@@ -23,6 +23,7 @@ And then go back to the browser.
 - ```IMAGES_DIR```: The directory where the images are stored.
 - ```ALLOWED_EXTENSIONS```: The allowed extensions for the images.
 - ```PORT```: The port to run the server on.
+- ```Author and Description```: The author and description of the project.
 
 ### index.html
 

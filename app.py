@@ -1,6 +1,14 @@
+"""
+    Author: Altair
+    Date: 2022-02-14 (Happy Valentine's Day)
+    Description:
+        Some BS about jetson, who cares.
+
+"""
+
+
 from flask import Flask, render_template, jsonify
 import os
-import json
 
 app = Flask(__name__)
 
@@ -9,6 +17,7 @@ IMAGES_DIR = "static/images"
 ALLOWED_EXTENSIONS = ['png', 'jpg', 'jpeg', 'gif']
 
 PORT = 6969
+
 
 @app.route('/ping')
 def ping():
