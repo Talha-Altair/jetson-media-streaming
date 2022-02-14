@@ -2,9 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, flash, jso
 
 app = Flask(__name__)
 
-app.route('/ping')
-
-
+@app.route('/ping')
 def ping():
 
     return jsonify({"ping": "pong"})
