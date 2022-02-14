@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSE >> Mechatronics</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    <div id="arrayImages"></div>
+
+</body>
+
+<script>
+
+    const url = '/fetch/images'
+
+    const images_dir = '{{ images_dir }}'
+
+    const arrayImagesElement = document.getElementById("arrayImages");
+
+    function form_image_urls(data) {
+
+        var images = data.images;
+        var image_urls = [];
+        for (var i = 0; i < images.length; i++) {
+            image_urls.push('/' + images_dir + '/' + images[i]);
+        }
+        return image_urls;
+    }
+
+    function createImageNode(fileName, atlText) {
+
+        const img = new Image();
+        img.src = fileName;
+        img.height = 500;
+        img.width = 500;
+        return img;
+
+    }
+
+    function update_images() {
+        $.ajax({
+            type: "GET",
+            url: url,
+            cache: false,
+            success: function (data) {
+
+                images_urls = form_image_urls(data);
+
+                arrayImagesElement.innerHTML = "";
+
+                for (let i = 0; i < images_urls.length; i++) {
+
+                    current_image = createImageNode(images_urls[i]);
+
+                    arrayImagesElement.appendChild(current_image);
+                }
+            }
+        });
+    }
+
+    setInterval(update_images, 500);
+
+</script>
+
+</html>
