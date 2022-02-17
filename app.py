@@ -19,6 +19,15 @@ ALLOWED_EXTENSIONS = ['png', 'jpg', 'jpeg', 'gif']
 PORT = 6969
 
 
+@app.after_request
+def add_header(response):
+
+    response.headers['cache-control'] = 'no-cache, no-store, must-revalidate'
+    response.headers['Pragma'] = 'no-cache'
+    response.headers['Expires'] = '0'
+    return response
+
+
 @app.route('/ping')
 def ping():
 
@@ -49,7 +58,8 @@ def list_images():
 
     images = os.listdir(IMAGES_DIR)
 
-    images = [image for image in images if image.split('.')[-1] in ALLOWED_EXTENSIONS]
+    images = [image for image in images if image.split(
+        '.')[-1] in ALLOWED_EXTENSIONS]
 
     return images
 

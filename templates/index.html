@@ -39,7 +39,7 @@
     function createImageNode(fileName, atlText) {
 
         const img = new Image();
-        img.src = fileName;
+        img.src = fileName + "#" + new Date().getTime();
         img.height = 500;
         img.width = 500;
         return img;
